@@ -1,0 +1,110 @@
+/* =====================================================================
+   JUNEX CINEMATIC ANIMATIONS & KEYFRAMES
+   ===================================================================== */
+
+/* Subtle ambient pulse for the portrait backlight */
+@keyframes ambientGlowPulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1);
+    filter: blur(70px);
+  }
+  50% {
+    opacity: 0.95;
+    transform: translate(-50%, -50%) scale(1.08);
+    filter: blur(85px);
+  }
+}
+
+/* Atmospheric smoke/ember gradient drift */
+@keyframes emberDrift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Seamless infinite horizontal marquee */
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Subtle live pulse for status badge */
+@keyframes statusBeacon {
+  0% {
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(74, 222, 128, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+  }
+}
+
+/* Stroke / Outline text for cinematic typography */
+.text-stroke {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.7);
+  text-stroke: 1.5px rgba(255, 255, 255, 0.7);
+  transition: all var(--transition-medium);
+}
+
+.text-stroke:hover {
+  color: rgba(255, 255, 255, 0.08);
+  -webkit-text-stroke-color: var(--color-warm-highlight);
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.ambient-portrait-glow {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  width: clamp(280px, 40vw, 520px);
+  height: clamp(280px, 40vw, 520px);
+  background: radial-gradient(circle, var(--color-vivid-orange) 0%, var(--bg-dark-ember) 55%, transparent 75%);
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+  animation: ambientGlowPulse 7s ease-in-out infinite;
+}
+
+.status-beacon-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #4ade80;
+  display: inline-block;
+  animation: statusBeacon 2s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none !important;
+  }
+  .ambient-portrait-glow {
+    animation: none !important;
+  }
+  .status-beacon-dot {
+    animation: none !important;
+  }
+}

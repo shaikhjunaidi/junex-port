@@ -1,0 +1,325 @@
+/* =====================================================================
+   JUNEX CINEMATIC DESIGN SYSTEM
+   Brand: JUNEX · Shaikh Junaid Portfolio
+   ===================================================================== */
+
+:root {
+  /* Color Palette */
+  --bg-obsidian: #090909;
+  --bg-deep-burgundy: #3D100D;
+  --bg-dark-ember: #64180F;
+  --color-burnt-orange: #D94716;
+  --color-vivid-orange: #F45A27;
+  --color-warm-highlight: #FF8A4C;
+  --color-amber-glow: rgba(244, 90, 39, 0.18);
+  --color-amber-glow-strong: rgba(244, 90, 39, 0.35);
+
+  /* Surface & Glass Tokens */
+  --surface-ground: #0a0a0b;
+  --surface-card: rgba(24, 18, 17, 0.65);
+  --surface-card-hover: rgba(35, 24, 22, 0.85);
+  --surface-elevated: rgba(255, 255, 255, 0.035);
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-medium: rgba(255, 255, 255, 0.16);
+  --border-orange: rgba(244, 90, 39, 0.35);
+
+  /* Typography Colors */
+  --text-primary: #FFFFFF;
+  --text-secondary: #BDB5AF;
+  --text-muted: #8F8882;
+  --text-accent: #FF8A4C;
+
+  /* Fonts */
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Layout Spacing */
+  --nav-height: 80px;
+  --container-max: 1240px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-medium: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-obsidian);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(100, 24, 15, 0.35), transparent 70%),
+    radial-gradient(circle 600px at 85% 15%, rgba(61, 16, 13, 0.25), transparent 60%);
+  background-attachment: fixed;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #090909;
+}
+::-webkit-scrollbar-thumb {
+  background: #2b1f1d;
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-burnt-orange);
+}
+
+/* Selection */
+::selection {
+  background: var(--color-vivid-orange);
+  color: #FFFFFF;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.25rem, 5vw, 2.5rem);
+  padding-right: clamp(1.25rem, 5vw, 2.5rem);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+/* Section Header Structure */
+.section-wrapper {
+  padding: clamp(4.5rem, 9vw, 8rem) 0;
+  position: relative;
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.825rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-vivid-orange);
+  margin-bottom: 0.75rem;
+}
+
+.section-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 14px;
+  height: 2px;
+  background: var(--color-vivid-orange);
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+}
+
+.section-title .accent {
+  background: linear-gradient(135deg, var(--color-warm-highlight), var(--color-vivid-orange));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-lead {
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  color: var(--text-secondary);
+  max-width: 680px;
+  line-height: 1.6;
+}
+
+/* Reusable Glass Cards */
+.glass-panel {
+  background: var(--surface-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.glass-panel:hover {
+  border-color: var(--border-orange);
+  box-shadow: 0 10px 30px -10px var(--color-amber-glow);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  font-family: var(--font-display);
+  font-size: 0.925rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+  outline: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-warm-highlight);
+  outline-offset: 3px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-burnt-orange), var(--color-vivid-orange));
+  color: #FFFFFF;
+  box-shadow: 0 4px 18px rgba(244, 90, 39, 0.35);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--color-vivid-orange), var(--color-warm-highlight));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(244, 90, 39, 0.5);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--border-medium);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-vivid-orange);
+  color: var(--color-warm-highlight);
+  background: rgba(244, 90, 39, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Chips & Tags */
+.tech-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all var(--transition-fast);
+}
+
+.tech-tag:hover {
+  background: rgba(244, 90, 39, 0.12);
+  border-color: rgba(244, 90, 39, 0.4);
+  color: #FFFFFF;
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =====================================================================
+   PRINT STYLESHEET FOR RESUME
+   Ensures pristine white-paper, black text A4 printing
+   ===================================================================== */
+@media print {
+  /* Hide portfolio chrome */
+  body, html {
+    background: #ffffff !important;
+    color: #111111 !important;
+    font-size: 11pt !important;
+  }
+
+  nav,
+  .hero-section,
+  .marquee-strip,
+  .section-wrapper:not(#resume-section),
+  footer,
+  .no-print,
+  .btn,
+  .modal-overlay {
+    display: none !important;
+  }
+
+  #resume-printable-area {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #111111 !important;
+    box-shadow: none !important;
+  }
+
+  .print-page {
+    width: 100% !important;
+    max-width: 210mm !important;
+    margin: 0 auto !important;
+    background: #ffffff !important;
+    color: #111111 !important;
+    box-shadow: none !important;
+  }
+
+  a {
+    color: #111111 !important;
+    text-decoration: underline !important;
+  }
+
+  @page {
+    size: A4;
+    margin: 15mm;
+  }
+}
